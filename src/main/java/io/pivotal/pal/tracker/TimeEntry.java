@@ -6,23 +6,23 @@ import java.util.Objects;
 public class TimeEntry {
 
     private long id;
-    private long projectID;
-    private long userID;
+    private long projectId;
+    private long userId;
     private LocalDate date;
     private int hours;
 
-    public TimeEntry(long projectID, long userID, LocalDate localDate, int hours) {
+    public TimeEntry(long projectId, long userId, LocalDate localDate, int hours) {
 
-        this.projectID = projectID;
-        this.userID = userID;
+        this.projectId = projectId;
+        this.userId = userId;
         this.date = localDate;
         this.hours = hours;
     }
 
-    public TimeEntry(long id, long projectID, long userID, LocalDate localDate, int hours) {
+    public TimeEntry(long id, long projectId, long userId, LocalDate localDate, int hours) {
         this.id = id;
-        this.projectID = projectID;
-        this.userID = userID;
+        this.projectId = projectId;
+        this.userId = userId;
         this.date = localDate;
         this.hours = hours;
     }
@@ -39,20 +39,20 @@ public class TimeEntry {
         this.id = id;
     }
 
-    public long getProjectID() {
-        return projectID;
+    public long getProjectId() {
+        return projectId;
     }
 
-    public void setProjectID(long projectID) {
-        this.projectID = projectID;
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 
-    public long getUserID() {
-        return userID;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public LocalDate getDate() {
@@ -73,7 +73,7 @@ public class TimeEntry {
 
     @Override
     public String toString() {
-        return "[" + this.id + "," + this.projectID + "," + this.userID + "," + this.date + "," + this.hours + "]";
+        return "[" + this.id + "," + this.projectId + "," + this.userId + "," + this.date + "," + this.hours + "]";
     }
 
     @Override
@@ -84,14 +84,14 @@ public class TimeEntry {
         }
         TimeEntry timeEntry = (TimeEntry) o;
         return this.id == timeEntry.getId()
-                && this.projectID == timeEntry.projectID
-                && this.userID == timeEntry.userID
+                && this.projectId == timeEntry.projectId
+                && this.userId == timeEntry.userId
                 && Objects.equals(this.date, timeEntry.date)
                 && this.hours == timeEntry.hours;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, projectID, userID, date, hours);
+        return Objects.hash(id, projectId, userId, date, hours);
     }
 }
