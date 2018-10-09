@@ -39,8 +39,8 @@ public class TimeEntryApiTest {
 
         DocumentContext createJson = parse(createResponse.getBody());
         assertThat(createJson.read("$.id", Long.class)).isGreaterThan(0);
-        assertThat(createJson.read("$.projectId", Long.class)).isEqualTo(123L);
-        assertThat(createJson.read("$.userId", Long.class)).isEqualTo(456L);
+        assertThat(createJson.read("$.projectID", Long.class)).isEqualTo(123L);
+        assertThat(createJson.read("$.userID", Long.class)).isEqualTo(456L);
         assertThat(createJson.read("$.date", String.class)).isEqualTo("2017-01-08");
         assertThat(createJson.read("$.hours", Long.class)).isEqualTo(8);
     }
@@ -75,8 +75,8 @@ public class TimeEntryApiTest {
         assertThat(readResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         DocumentContext readJson = parse(readResponse.getBody());
         assertThat(readJson.read("$.id", Long.class)).isEqualTo(id);
-        assertThat(readJson.read("$.projectId", Long.class)).isEqualTo(123L);
-        assertThat(readJson.read("$.userId", Long.class)).isEqualTo(456L);
+        assertThat(readJson.read("$.projectID", Long.class)).isEqualTo(123L);
+        assertThat(readJson.read("$.userID", Long.class)).isEqualTo(456L);
         assertThat(readJson.read("$.date", String.class)).isEqualTo("2017-01-08");
         assertThat(readJson.read("$.hours", Long.class)).isEqualTo(8);
     }
@@ -86,16 +86,14 @@ public class TimeEntryApiTest {
         Long id = createTimeEntry();
         TimeEntry updatedTimeEntry = new TimeEntry(2L, 3L, LocalDate.parse("2017-01-09"), 9);
 
-
         ResponseEntity<String> updateResponse = restTemplate.exchange("/time-entries/" + id, HttpMethod.PUT, new HttpEntity<>(updatedTimeEntry, null), String.class);
-
 
         assertThat(updateResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 
         DocumentContext updateJson = parse(updateResponse.getBody());
         assertThat(updateJson.read("$.id", Long.class)).isEqualTo(id);
-        assertThat(updateJson.read("$.projectId", Long.class)).isEqualTo(2L);
-        assertThat(updateJson.read("$.userId", Long.class)).isEqualTo(3L);
+        assertThat(updateJson.read("$.projectID", Long.class)).isEqualTo(2L);
+        assertThat(updateJson.read("$.userID", Long.class)).isEqualTo(3L);
         assertThat(updateJson.read("$.date", String.class)).isEqualTo("2017-01-09");
         assertThat(updateJson.read("$.hours", Long.class)).isEqualTo(9);
     }
